@@ -23,7 +23,7 @@ const reducer = (state: any, action: any) => {
 };
 
 export default function CartCard({ product }: { product: Product }) {
-  const { cart, setCart } = useContext(CartContext);
+  const { cart, setCart, removeProduct } = useContext(CartContext);
 
   const [state, dispatch] = useReducer(reducer, product);
 
@@ -51,9 +51,18 @@ export default function CartCard({ product }: { product: Product }) {
       </View>
       <View width={windowWidth - 136}>
         <YStack space="$2">
-          <Text fontSize={16} fontWeight={'500'} numberOfLines={2}>
-            {product.title}
-          </Text>
+          <XStack justifyContent="space-between" alignItems="center" pr="$4">
+            <Text width={250} fontWeight={'500'} numberOfLines={2}>
+              {product.title}
+            </Text>
+            <Button
+              size="$2"
+              backgroundColor="$red10"
+              pressStyle={{ backgroundColor: '$red9Dark' }}
+              icon={() => <Ionicons name="close" size={18} />}
+              onPress={() => removeProduct(product)}
+            />
+          </XStack>
           <XStack gap={'$1'} alignItems={'center'}>
             <Ionicons name="layers-outline" size={14} />
             <Text>{product.category}</Text>
