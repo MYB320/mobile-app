@@ -61,7 +61,9 @@ export default function Home() {
               theme={'blue'}
               icon={() => <Ionicons name="search" size={18} />}
               onPress={() =>
-                searchValue.length === 0 ? fetchProducts() : setProducts(ProductsFilter)
+                searchValue.length === 0
+                  ? fetchProducts(cat, Number(limit), sort)
+                  : setProducts(ProductsFilter)
               }
             />
           </XStack>
